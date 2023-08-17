@@ -1,0 +1,12 @@
+services:
+  db:
+    container_name: myskill_db
+    image: mongo:6.0-jammy
+    ports:
+      - 27017:27017
+#    volumes:
+#      - ./db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=arise
+      - MONGO_INITDB_ROOT_PASSWORD=arise123
+      - MONGO_INITDB_DATABASE=myskill
