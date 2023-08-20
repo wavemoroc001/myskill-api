@@ -1,0 +1,397 @@
+// clear all data
+db.skills.deleteMany({})
+db.users.deleteMany({})
+
+// insert technical skill
+db.skills.insertMany([
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f53"),
+        "name": "HTML",
+        "description": "HTML is the standard markup language for creating Web pages.",
+        "logo": "https://www.svgrepo.com/show/452228/html-5.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f54"),
+        "name": "CSS",
+        "description": "CSS is a stylesheet language used for describing the look and formatting of a document written in HTML.",
+        "logo": "https://www.svgrepo.com/show/452185/css-3.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f55"),
+        "name": "JavaScript",
+        "description": "JavaScript is a programming language that enables interactive web pages.",
+        "logo": "https://www.svgrepo.com/show/353925/javascript.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f56"),
+        "name": "Python",
+        "description": "Python is a versatile and widely-used programming language.",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f57"),
+        "name": "Java",
+        "description": "Java is a widely-used, class-based, object-oriented programming language.",
+        "logo": "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f58"),
+        "name": "SQL",
+        "description": "SQL is used for managing and manipulating relational database systems.",
+        "logo": "https://www.svgrepo.com/show/255832/sql.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f59"),
+        "name": "C++",
+        "description": "C++ is a general-purpose programming language known for its performance and versatility.",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f5a"),
+        "name": "Ruby on Rails",
+        "description": "Ruby on Rails is a web application framework written in Ruby language.",
+        "logo": "https://www.svgrepo.com/show/354252/rails.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f5b"),
+        "name": "PHP",
+        "description": "PHP is a server-side scripting language designed for web development.",
+        "logo": "https://www.svgrepo.com/show/452088/php.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f43e098346113ae4f5c"),
+        "name": "React.js",
+        "description": "React.js is a JavaScript library used for building user interfaces.",
+        "logo": "https://www.svgrepo.com/show/493719/react-javascript-js-framework-facebook.svg",
+        "kind": "technical",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    }
+]);
+
+// insert soft skill
+db.skills.insertMany([
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f5e"),
+        "name": "Communication",
+        "description": "Effective communication involves clear expression and attentive listening.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f5f"),
+        "name": "Teamwork",
+        "description": "Teamwork involves collaborating with others to achieve common goals.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f60"),
+        "name": "Problem Solving",
+        "description": "Problem solving entails identifying issues and finding effective solutions.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f61"),
+        "name": "Adaptability",
+        "description": "Adaptability is the ability to adjust to new situations and challenges.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f62"),
+        "name": "Time Management",
+        "description": "Time management involves efficiently organizing and prioritizing tasks.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f63"),
+        "name": "Leadership",
+        "description": "Leadership involves guiding and motivating a team towards achieving goals.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f64"),
+        "name": "Critical Thinking",
+        "description": "Critical thinking involves evaluating situations logically and making informed decisions.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+        "_id": ObjectId("64e17f4ae098346113ae4f65"),
+        "name": "Creativity",
+        "description": "Creativity involves thinking outside the box and generating innovative ideas.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+    {
+            "_id": ObjectId("64e17f4ae098346113ae4f66"),
+        "name": "Conflict Resolution",
+        "description": "Conflict resolution involves finding peaceful solutions to disagreements and conflicts.",
+        "kind": "soft",
+        "createdAt": ISODate("2023-08-17T00:00:00.000Z"),
+        "updatedAt": ISODate("2023-08-17T00:00:00.000Z")
+    },
+]);
+
+// insert users
+db.users.insertMany([
+  {
+    "_id": ObjectId("64e18541e098346113ae4f81"),
+    "createdAt": new Date("2023-08-16T09:01:59Z"),
+    "createdBy": "admin",
+    "email": "somsong.n@arise.tech",
+    "employeeID": "123456",
+    "firstname": "Somsong",
+    "introduction": "Passionate admin with a knack for innovation. Let's make great things happen!",
+    "jobRole": "admin",
+    "lastname": "Nakarin",
+    "organaization": "arise",
+    "password": "password",
+    "softSkill": [
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f65"),
+        "score": 5
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f66"),
+        "score": 8
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f5f"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f5e"),
+        "score": 6
+      }
+    ],
+    "technicalSkill": [
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f53"),
+        "score": 6
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f58"),
+        "score": 9
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f59"),
+        "score": 8
+      }
+    ],
+    "updatedAt": new Date("2023-08-16T09:01:59Z"),
+    "updatedBy": "admin",
+    "username": "somsong.n"
+  },
+  {
+      "_id": ObjectId("64e18541e098346113ae4f82"),
+    "createdAt": new Date("2023-08-17T09:02:00Z"),
+    "createdBy": "admin",
+    "email": "john.doe@arise.tech",
+    "employeeID": "654321",
+    "firstname": "John",
+    "introduction": "Passionate developer, crafting code that brings ideas to life.",
+    "jobRole": "developer",
+    "lastname": "Doe",
+    "organaization": "arise",
+    "password": "password123",
+    "softSkill": [
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f62"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f63"),
+        "score": 8
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f64"),
+        "score": 6
+      }
+    ],
+    "technicalSkill": [
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f5a"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f5c"),
+        "score": 9
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f58"),
+        "score": 5
+      }
+    ],
+    "updatedAt": new Date("2023-08-17T09:02:00Z"),
+    "updatedBy": "admin",
+    "username": "john.doe"
+  },
+  {
+    "_id": ObjectId("64e18541e098346113ae4f83"),
+    "createdAt": new Date("2023-08-18T09:02:00Z"),
+    "createdBy": "admin",
+    "email": "jane.doe@infinitas.com",
+    "employeeID": "789012",
+    "firstname": "Jane",
+    "introduction": "Creative designer with an eye for aesthetics. Turning ideas into beautiful designs!",
+    "jobRole": "designer",
+    "lastname": "Doe",
+    "organaization": "infinitas",
+    "password": "pass456",
+    "softSkill": [
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f5f"),
+        "score": 9
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f61"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f60"),
+        "score": 8
+      }
+    ],
+    "technicalSkill": [
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f55"),
+        "score": 6
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f54"),
+        "score": 8
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f53"),
+        "score": 9
+      }
+    ],
+    "updatedAt": new Date("2023-08-18T09:02:00Z"),
+    "updatedBy": "admin",
+    "username": "jane.doe"
+  },
+  {
+     "_id": ObjectId("64e18541e098346113ae4f84"),
+    "createdAt": new Date("2023-08-19T09:02:00Z"),
+    "createdBy": "admin",
+    "email": "bob.smith@arise.tech",
+    "employeeID": "543210",
+    "firstname": "Bob",
+    "introduction": "Experienced manager, leading with a vision for success. Together, we achieve greatness!",
+    "jobRole": "manager",
+    "lastname": "Smith",
+    "organaization": "arise",
+    "password": "pass789",
+    "softSkill": [
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f65"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f66"),
+        "score": 6
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f61"),
+        "score": 8
+      }
+    ],
+    "technicalSkill": [
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f57"),
+        "score": 3
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f56"),
+        "score": 4
+      }
+    ],
+    "updatedAt": new Date("2023-08-19T09:02:00Z"),
+    "updatedBy": "admin",
+    "username": "bob.smith"
+  },
+  {
+    "_id": ObjectId("64e18541e098346113ae4f85"),
+    "createdAt": new Date("2023-08-20T09:02:00Z"),
+    "createdBy": "admin",
+    "email": "mary.jones@arise.com",
+    "employeeID": "246813",
+    "firstname": "Mary",
+    "introduction": "Analytical mind with a passion for solving complex problems. Let's tackle challenges together!",
+    "jobRole": "analyst",
+    "lastname": "Jones",
+    "organaization": "arise",
+    "password": "pass1234",
+    "softSkill": [
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f64"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f61"),
+        "score": 3
+      },
+      {
+        "skillID": ObjectId("64e17f4ae098346113ae4f62"),
+        "score": 6
+      }
+    ],
+    "technicalSkill": [
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f59"),
+        "score": 7
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f57"),
+        "score": 6
+      },
+      {
+        "skillID": ObjectId("64e17f43e098346113ae4f58"),
+        "score": 5
+      }
+    ],
+    "updatedAt": new Date("2023-08-20T09:02:00Z"),
+    "updatedBy": "admin",
+    "username": "mary.jones"
+  }
+])
