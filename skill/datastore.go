@@ -50,11 +50,11 @@ type Collection struct {
 	*mongo.Collection
 }
 
-func (c *Collection) FindByName(name string) (*Skill, error) {
+func (c *Collection) FindByName(ctx context.Context, name string) (*Skill, error) {
 	return nil, nil
 }
 
-func (c *Collection) FindByID() (*Skill, error) {
+func (c *Collection) FindByID(ctx context.Context, skillID string) (*Skill, error) {
 	return nil, nil
 }
 
@@ -115,15 +115,15 @@ func (c *Collection) FindAll(ctx context.Context) ([]Skill, error) {
 	return nil, nil
 }
 
-func (c *Collection) InsertOne(skill *Skill) error {
+func (c *Collection) InsertOne(ctx context.Context, skill *Skill) error {
 	return nil
 }
 
-func (c *Collection) UpdateOne(skill *Skill) error {
+func (c *Collection) UpdateOne(ctx context.Context, skill *Skill) error {
 	return nil
 }
 
-func NewCollection(db *mongo.Database) *Collection {
+func NewCollection(db *mongo.Database) DataStore {
 	col := db.Collection("skills")
 	return &Collection{col}
 }

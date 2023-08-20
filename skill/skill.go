@@ -16,8 +16,8 @@ type Skill struct {
 }
 
 type AddSkillRequest struct {
-	Name        string `bson:"name" json:"name"`
-	Description string `bson:"description" json:"description"`
-	Logo        string `bson:"logo" json:"logo"`
-	Kind        string `bson:"kind" json:"kind"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Logo        string `json:"logo"`
+	Kind        string `json:"kind"`
 }
