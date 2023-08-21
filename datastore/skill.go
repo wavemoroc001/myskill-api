@@ -9,6 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"myskill-api/model"
+	"time"
 )
 
 type SkillCollection interface {
@@ -145,20 +146,21 @@ func (s *Skill) Update(ctx context.Context, skill *model.Skill) error {
 		{"_id", skill.ID},
 	}
 
-	field := bson.A{}
+	var field bson.D
 
 	if skill.Name != "" {
-		field = append(field, bson.D{{"name", skill.Name}})
+		field = append(field, bson.E{Key: "name", Value: skill.Name})
 	}
 	if skill.Description != "" {
-		field = append(field, bson.D{{"description", skill.Description}})
+		field = append(field, bson.E{Key: "description", Value: skill.Description})
 	}
 	if skill.Logo != "" {
-		field = append(field, bson.D{{"logo", skill.Logo}})
+		field = append(field, bson.E{Key: "logo", Value: skill.Logo})
 	}
 
-	updateCMD := bson.D{
-		{"$set", field},
+	field = append(field, bson.E{Key: "updatedAt", Value: time.Now()})
+	updateCMD := bson.M{
+		"$set": field,
 	}
 
 	_, err := s.UpdateOne(ctx, filter, updateCMD)
