@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
+	"myskill-api/model"
 	"myskill-api/service"
 	"net/http"
 )
@@ -14,10 +15,38 @@ type SkillHandler interface {
 	GetBulkSkill(gctx *gin.Context)
 	GetSkillByKeyword(gctx *gin.Context)
 	UpdateSkillByID(gctx *gin.Context)
+	InsertSkill(gctx *gin.Context)
 }
 
 type Skill struct {
 	service service.SkillService
+}
+
+func (s *Skill) InsertSkill(gctx *gin.Context) {
+	var req AddSkillRequest
+	if err := gctx.ShouldBindJSON(&req); err != nil {
+		gctx.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	skill := &model.Skill{
+		Name:        req.Name,
+		Description: req.Description,
+		Logo:        req.Logo,
+		Kind:        req.Kind,
+	}
+
+	err := s.service.InsertSkill(gctx, skill)
+	if err != nil {
+		gctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	gctx.JSON(http.StatusOK, gin.H{
+		"message": "success",
+	})
 }
 
 func (s *Skill) UpdateSkillByID(gctx *gin.Context) {
@@ -95,8 +124,14 @@ func (s *Skill) GetSkillByID(gctx *gin.Context) {
 }
 
 func (s *Skill) GetBulkSkill(gctx *gin.Context) {
-	//TODO implement me
-	panic("implement me")
+	skills, err := s.service.GetBulkSkill(gctx)
+	if err != nil {
+		gctx.JSON(500, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	gctx.JSON(http.StatusOK, skills)
 }
 
 func NewSkillHandler(service service.SkillService) SkillHandler {

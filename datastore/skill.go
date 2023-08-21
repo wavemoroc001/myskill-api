@@ -19,10 +19,30 @@ type SkillCollection interface {
 	FindAllByPageAndSort(ctx context.Context, pageNo int, pageSize int) (Page, error)
 	Update(ctx context.Context, skill *model.Skill) error
 	Insert(ctx context.Context, skill *model.Skill) error
+	FindAllBulkSkill(ctx context.Context) ([]model.Skill, error)
 }
-
 type Skill struct {
 	*mongo.Collection
+}
+
+func (s *Skill) FindAllBulkSkill(ctx context.Context) ([]model.Skill, error) {
+	cur, err := s.Find(ctx, bson.M{}, options.Find().SetProjection(bson.M{
+		"name": 1,
+		"_id":  1,
+	}))
+	if err != nil {
+		return nil, err
+	}
+	defer cur.Close(ctx)
+	var skills []model.Skill
+	for cur.Next(ctx) {
+		var skill model.Skill
+		if err := cur.Decode(&skill); err != nil {
+			return nil, err
+		}
+		skills = append(skills, skill)
+	}
+	return skills, nil
 }
 
 func (s *Skill) FindByKeyword(ctx context.Context, keyword string) ([]model.Skill, error) {
@@ -134,6 +154,9 @@ func (s *Skill) FindAll(ctx context.Context) ([]model.Skill, error) {
 }
 
 func (s *Skill) Insert(ctx context.Context, skill *model.Skill) error {
+	skill.ID = primitive.NewObjectID()
+	skill.CreatedAt = time.Now()
+	skill.UpdatedAt = time.Now()
 	_, err := s.InsertOne(ctx, skill)
 	if err != nil {
 		return err
