@@ -101,15 +101,9 @@ func (s *Skill) FindAllByPageAndSort(ctx context.Context, pageNo int, pageSize i
 
 	// get lastID
 	var datas []Data
-	for cursor.Next(ctx) {
-		var data Data
-		if err := cursor.Decode(&data); err != nil {
-			log.Println(fmt.Errorf("can not decode skill: %w", err))
-		}
-		log.Printf("%#v", data.ID.String())
-		datas = append(datas, data)
+	if err := cursor.All(ctx, &datas); err != nil {
+		return Page{}, err
 	}
-
 	totalSkill, err := s.CountDocuments(ctx, bson.D{})
 	if err != nil {
 		log.Println(fmt.Errorf("can not count skill: %w", err))
@@ -142,12 +136,8 @@ func (s *Skill) FindAll(ctx context.Context) ([]model.Skill, error) {
 	if err != nil {
 		return result, err
 	}
-	for cur.Next(ctx) {
-		var skill model.Skill
-		if err := cur.Decode(&skill); err != nil {
-			return result, err
-		}
-		result = append(result, skill)
+	if err := cur.All(ctx, &result); err != nil {
+		return nil, err
 	}
 
 	return result, nil
