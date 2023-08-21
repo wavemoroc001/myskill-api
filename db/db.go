@@ -9,18 +9,21 @@ import (
 	"time"
 )
 
-func NewDBConn() (*mongo.Database, func()) {
+type Database struct {
+	Host     string `mapstructure:"host"`
+	Username string `mapstructure:"username"`
+	Password string `mapstructure:"password"`
+}
+
+func NewDBConn(config Database) (*mongo.Database, func()) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	//auth := options.Credential{
-	//	Username: "arise",
-	//	Password: "arise123",
-	//}
 	auth := options.Credential{
-		Username: "arise",
-		Password: "arise123",
+		Username: config.Username,
+		Password: config.Password,
 	}
-	option := options.Client().ApplyURI("mongodb://localhost:27017").SetAuth(auth)
+	option := options.Client().ApplyURI(config.Host).SetAuth(auth)
+
 	conn, err := mongo.Connect(ctx, option)
 	if err != nil {
 		log.Fatal(fmt.Errorf("can not connect to mongodb: %w", err))

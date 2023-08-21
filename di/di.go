@@ -1,6 +1,7 @@
 package di
 
 import (
+	"myskill-api/config"
 	"myskill-api/datastore"
 	"myskill-api/db"
 	"myskill-api/handler"
@@ -10,8 +11,9 @@ import (
 )
 
 func Wire() (*http.Server, func()) {
+	cfg := config.LoadEnv()
 	logger, cleanupLoggerFunc := logger.NewZap()
-	database, cleanupDBConnFunc := db.NewDBConn()
+	database, cleanupDBConnFunc := db.NewDBConn(cfg.Database)
 	skillDataStore := datastore.NewSkillCollection(database)
 	skillService := service.NewSkillService(skillDataStore)
 	skillHandler := handler.NewSkillHandler(skillService)
