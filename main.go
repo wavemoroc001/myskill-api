@@ -2,29 +2,24 @@ package main
 
 import (
 	"log"
-	"myskill-api/db"
-	"myskill-api/handler"
-	"myskill-api/logger"
+	"myskill-api/di"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func main() {
-	logger, cleanupLoggerFunc := logger.NewZap()
-	defer cleanupLoggerFunc()
 
-	database, cleanupDBConnFunc := db.NewDBConn()
-	defer cleanupDBConnFunc()
-	if database != nil {
-		logger.Info("connect success")
-	}
-	//coll := skill.NewCollection(database)
-	//page, _ := coll.FindAllByPageAndSort(context.Background(), 1, 2)
-	//log.Printf("%#v\n%#v\n%#v\n%#v", page.TotalPage, page.TotalCount, page.PageSize, page.PageNo)
-	engine := NewGinEngine()
-	router := handler.NewRouter(engine, logger)
-	handler.Register(router)
-	srv, cleanupSRVFunc := NewHTTPServer(router)
-	defer cleanupSRVFunc()
+	srv, cleanupFunc := di.Wire()
 	if err := srv.ListenAndServe(); err != nil {
 		log.Fatal("Server failed to start:", err)
 	}
+
+	go func() {
+		sigint := make(chan os.Signal, 1)
+		signal.Notify(sigint, syscall.SIGINT, syscall.SIGTERM)
+		<-sigint
+
+		cleanupFunc()
+	}()
 }

@@ -1,13 +1,8 @@
 package handler
 
-import (
-	"github.com/gin-gonic/gin"
-	"myskill-api/middleware"
-	"net/http"
-)
-
 func Register(r *Router) {
-	r.GET("/users", middleware.Logger(r.logger), func(c *gin.Context) {
-		c.Status(http.StatusOK)
-	})
+	r.GET("/skills/:id", r.SkillHandler.GetSkillByID)
+	r.GET("/skills/", r.SkillHandler.GetSkillByKeyword)
+	r.GET("/skills/bulk", r.SkillHandler.GetBulkSkill)
+	r.PUT("/skills/:id", r.SkillHandler.UpdateSkillByID)
 }

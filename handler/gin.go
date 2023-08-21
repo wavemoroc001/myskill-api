@@ -1,12 +1,11 @@
-package main
+package handler
 
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"log"
-	"myskill-api/handler"
 	"net/http"
 	"time"
 )
@@ -26,7 +25,7 @@ func NewGinEngine() *gin.Engine {
 	return engine
 }
 
-func NewHTTPServer(engine *handler.Router) (*http.Server, func()) {
+func NewHTTPServer(engine *Router) (*http.Server, func()) {
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: engine,
@@ -35,7 +34,8 @@ func NewHTTPServer(engine *handler.Router) (*http.Server, func()) {
 		ctx, cancel := context.WithTimeout(context.Background(), 5)
 		defer cancel()
 		if err := srv.Shutdown(ctx); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			log.Fatal("Server forced to shutdown:", err)
+			msg := fmt.Errorf("failed to shutdown http server: %w", err).Error()
+			engine.logger.Fatal(msg)
 		}
 	}
 }

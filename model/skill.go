@@ -1,4 +1,4 @@
-package skill
+package model
 
 import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,11 +13,4 @@ type Skill struct {
 	Kind        string             `bson:"kind"`
 	CreatedAt   time.Time          `bson:"createdAt"`
 	UpdatedAt   time.Time          `bson:"updatedAt"`
-}
-
-type AddSkillRequest struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Logo        string `json:"logo"`
-	Kind        string `json:"kind"`
 }

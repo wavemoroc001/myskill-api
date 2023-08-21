@@ -8,11 +8,27 @@ import (
 type Router struct {
 	*gin.Engine
 	logger *zap.Logger
+	*Set
 }
 
-func NewRouter(engine *gin.Engine, logger *zap.Logger) *Router {
+type Set struct {
+	//userHandler  UserHandler
+	SkillHandler SkillHandler
+}
+
+func NewHandlerSet(
+	//userHandler UserHandler,
+	skillHandler SkillHandler) *Set {
+	return &Set{
+		//userHandler:  userHandler,
+		SkillHandler: skillHandler,
+	}
+}
+
+func NewRouter(engine *gin.Engine, logger *zap.Logger, set *Set) *Router {
 	return &Router{
 		engine,
 		logger,
+		set,
 	}
 }
